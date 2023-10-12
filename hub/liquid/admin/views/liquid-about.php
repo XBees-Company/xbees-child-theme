@@ -203,7 +203,7 @@
 	</div>
 
 	<div class="lqd-row">
-		<img src="<?php echo esc_url(get_template_directory_uri() . '/liquid/assets/img/dashboard/about/4-1.jpg'); ?>"  
+		<img src="<?php echo esc_url(get_template_directory_uri() . '/liquid/assets/img/dashboard/about/4-2.jpg'); ?>"  
 			style="border-radius:18px" 
 			alt="Hub"
 		>
@@ -211,9 +211,9 @@
 	
 	<div class="lqd-row lqd-about-iconbox-wrap">
 		<div class="lqd-col-4 lqd-about-iconbox">
-			<h4>Introducing v4.1</h4>
-			<p>Hub v4.1 is a major update for Elementor</p>
-			<a href="https://landing4-1.liquid-themes.com/" target="_blank" class="merlin__button">
+			<h4>Introducing v4.2</h4>
+			<p>Hub v4.2 is a major update for Elementor</p>
+			<a href="https://landing4-2.liquid-themes.com/" target="_blank" class="merlin__button">
 				<span>See Landing Page
 				<svg xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;margin-left:.5em" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

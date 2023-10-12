@@ -32,6 +32,7 @@ class HUB_AI {
     function hooks() {
 
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+        add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_scripts' ] );
         
         add_action( 'admin_footer', [ $this, 'template' ] );
         add_action( 'edit_form_after_title', [ $this, 'print_hub_ai_button' ] );
@@ -71,6 +72,14 @@ class HUB_AI {
 			);
 		}
 		
+	}
+
+	function enqueue_block_scripts() {
+		wp_enqueue_script(
+			'hub-ai-block-script',
+			get_template_directory_uri() . '/liquid/assets/vendors/hub-ai/block-script.js',
+			array( 'wp-blocks', 'wp-dom' )
+		);
 	}
 
 	function editor_style() {

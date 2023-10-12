@@ -1012,4 +1012,20 @@ $demos = array(
 		'has_widgets' => true,
 		'builder'     => 'elementor'
 	),
+	'beauty_el' => array(
+		'title'       => esc_html__( 'Beauty', 'hub' ),	
+		'description' => '',
+		'screenshot'  => $uri . 'beauty.jpg',
+		'preview'     => 'https://beauty.liquid-themes.com/',
+		'has_widgets' => true,
+		'builder'     => 'elementor'
+	),
+	'hotel_el' => array(
+		'title'       => esc_html__( 'Hotel', 'hub' ),	
+		'description' => '',
+		'screenshot'  => $uri . 'hotel.jpg',
+		'preview'     => 'https://hotel.liquid-themes.com/',
+		'has_widgets' => true,
+		'builder'     => 'elementor'
+	),
 );

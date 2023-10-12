@@ -63,7 +63,7 @@ var Merlin = (function($){
                 vc_button();
             }
 
-			$("#default_plugins_revslider, #default_plugins_woocommerce, #default_plugins_liquid-gdpr, #default_plugins_wp-bottom-menu").prop('checked', false);
+			$("#default_plugins_revslider, #default_plugins_woocommerce, #default_plugins_liquid-gdpr, #default_plugins_wp-bottom-menu, #default_plugins_hub-booking").prop('checked', false);
 
             if (current_url.includes("&step=plugins")){
                 body.toggleClass( drawer_opened );

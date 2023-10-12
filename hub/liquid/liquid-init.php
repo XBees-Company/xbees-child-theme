@@ -416,10 +416,10 @@ class Liquid_Theme extends Liquid_Base {
 		if ( version_compare( $theme_version, '2.0', '>=' ) ){
 
 			if ( 
-				($tgmpa->is_plugin_active( 'hub-elementor-addons' ) && version_compare( LD_ELEMENTOR_VERSION, '4.1.1', '<' )) ||
+				($tgmpa->is_plugin_active( 'hub-elementor-addons' ) && version_compare( LD_ELEMENTOR_VERSION, '4.2', '<' )) ||
 				( 
 				  ( class_exists('Liquid_Addons') && !defined('LD_ADDONS_VERSION') ) || 
-				  ( class_exists('Liquid_Addons') && (defined('LD_ADDONS_VERSION') && version_compare( LD_ADDONS_VERSION, '4.1.2', '<' )) ) 
+				  ( class_exists('Liquid_Addons') && (defined('LD_ADDONS_VERSION') && version_compare( LD_ADDONS_VERSION, '4.2', '<' )) ) 
 				) 
 			){
 				if ( $url != '?page=liquid-about' )  {

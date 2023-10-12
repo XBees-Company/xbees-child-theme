@@ -593,7 +593,13 @@ $liquidWindow.on('pageshow load', ev => {
       } = this.options;
       const $toggleLink = $(submenuParent).children('a');
       const $mobileNavExpander = $('.submenu-expander', $toggleLink);
+      $mobileNavExpander.attr('role', 'button');
       $mobileNavExpander.attr('tabindex', 0);
+      $mobileNavExpander.each((i, expander) => {
+        const $expander = $(expander);
+        const $parent = $expander.parent();
+        $expander.insertAfter($parent);
+      });
       if ($mobileNavExpander.length) {
         $mobileNavExpander.off();
         $mobileNavExpander.on('click keypress', event => {
@@ -772,9 +778,12 @@ $liquidWindow.on('pageshow load', ev => {
       const $submenu = $submenuParent.children('.nav-item-children, .children');
       const $navbarInner = $submenuParent.closest('.navbar-collapse-inner');
       const submenuParentWasActive = $submenuParent.hasClass('is-active');
+      const $link = $('> a', $submenuParent);
+      const $expander = $('.submenu-expander', $submenuParent);
       $submenuParent.toggleClass('is-active');
       $submenuParent.siblings().removeClass('is-active').find('.nav-item-children, .children').stop().slideUp(200);
       $submenu.stop().slideToggle(300, () => {
+        $expander.css('top', $link.outerHeight() / 2 - 18);
         if (this.isModernMobileNav && !submenuParentWasActive && $navbarInner.length) {
           $navbarInner.animate({
             scrollTop: $navbarInner.scrollTop() + ($submenuParent.offset().top - $navbarInner.offset().top)
@@ -4651,13 +4660,14 @@ jQuery(document).ready(function ($) {
       const header = $('.lqd-pf-carousel-header', this.$carouselContainer)[0];
       if (!header) return false;
       const {
-        x
+        x,
+        size
       } = this.flickityData;
       const firstVisibleCell = this.flickityData.cells.filter(cell => $(cell.element).is(':visible'))[0];
       const firstCellWidth = firstVisibleCell.size.width;
-      const opacityVal = gsap.utils.normalize(-firstCellWidth, 0, x);
-      const rotationVal = gsap.utils.mapRange(0, -firstCellWidth, 0, -100, x);
-      const zVal = gsap.utils.mapRange(0, -firstCellWidth, 0, -300, x);
+      const opacityVal = gsap.utils.normalize(-firstCellWidth, 0, this.isRTL ? x + size.width : x);
+      const rotationVal = gsap.utils.mapRange(0, -firstCellWidth, 0, -100, this.isRTL ? x + size.width : x);
+      const zVal = gsap.utils.mapRange(0, -firstCellWidth, 0, -300, this.isRTL ? x + size.width : x);
       $(header).parent().addClass('perspective');
       gsap.to(header, {
         opacity: opacityVal,
@@ -6713,7 +6723,7 @@ jQuery(document).ready(function ($) {
   };
 })(jQuery);
 jQuery(document).ready(function ($) {
-  $('form, .lqd-filter-dropdown, .widget').not('[name="chbs-form"], .frm-fluent-form').liquidFormInputs();
+  $('form, .lqd-filter-dropdown, .widget').not('[name="chbs-form"], .frm-fluent-form, .hub-booking-form').liquidFormInputs();
 });
 (function ($) {
   'use strict';
@@ -10746,6 +10756,7 @@ jQuery(document).ready(function ($) {
         ...options
       };
       this.isBS5 = typeof bootstrap !== 'undefined';
+      this.isRTL = $('html').attr('dir') === 'rtl';
       this.element = element;
       this.$element = $(element);
       this.$tabNav = $('.lqd-tabs-nav', this.element);
@@ -10758,7 +10769,8 @@ jQuery(document).ready(function ($) {
       if (this.$activeItem.length && this.options.translateNav) {
         this.activeItemWidth = this.$activeItem.outerWidth();
         this.activeItemHeight = this.$activeItem.outerHeight();
-        this.activeItemPosLeft = this.$activeItem.position().left;
+        console.log(this.$activeItem.position().left + this.activeItemWidth);
+        this.activeItemPosLeft = !this.isRTL ? this.$activeItem.position().left : this.$tabNav.width() - (this.$activeItem.position().left + this.activeItemWidth) * -1;
       }
       if (this.element.parentElement.closest('.lqd-mobile-sec')) {
         this.changeIds();
@@ -10845,7 +10857,7 @@ jQuery(document).ready(function ($) {
       if (translateNav) {
         this.activeItemWidth = this.$activeItem.outerWidth();
         this.activeItemHeight = this.$activeItem.outerHeight();
-        this.activeItemPosLeft = this.$activeItem.position().left;
+        this.activeItemPosLeft = !this.isRTL ? this.$activeItem.position().left : (this.$tabNav.width() - (this.$activeItem.position().left + this.activeItemWidth)) * -1;
         this.translateNav(true);
       }
     }
